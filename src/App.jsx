@@ -3,7 +3,6 @@ import ReactDOM from 'react-dom'
 import './App.css'
 import GoogleLogin from "react-google-login"
 import HomePage from './HomePage'
-
 import Search from './Search'
 
 export default function App() {

@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom'
 import './login.css'
 import GoogleLogin from "react-google-login"
 
-export default function App() {
+export default function Login() {
     const [name, setName] = useState("")
     const [email, setEmail] = useState("")
     const [url, setUrl] = useState("")
@@ -15,6 +15,8 @@ export default function App() {
     }
 
     function UserGreeting() {
+
+
         return (<>
             <div class="login-page">
             <div class="form">

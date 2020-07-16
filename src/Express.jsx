@@ -1,25 +1,38 @@
-const express = require("express")
-const bodyParser = require("body-parser");
+var express = require("express")
+var app = express()
+var port = 3000
 
-const app = express()
-const port = 3000
+var bodyParser = require('body-parser')
+app.use(bodyParser.json())
+app.use(bodyParser.urlencoded({ extended: true }))
 
-const gameExamples = ["Doom", "Call of Duty", "PayDay2", "FortNite", "PubG", "DayZ"]
-
-app.use(bodyParser.urlencoded({ extended: false }));
-app.use(bodyParser.json());
+var mongoose = require("mongoose")
+mongoose.Promise = global.Promise
+mongoose.connect("mongodb://localhost:27017/node-demo")
+var nameSchema = new mongoose.Schema({
+    firstName: String,
+    lastName: String
+})
+var User = mongoose.model("User", nameSchema)
 
 app.get("/", (req, res) => {
-    res.send("Hello World!")
+    res.sendFile(__dirname + "/index.html")
 })
 
-app.get("/games", (req, res) => {
-    res.send(gameExamples)
+app.post("/addname", (req, res) => {
+    var myData = new User(req.body)
+    myData.save()
+        .then(item => {
+            res.send("Name saved to database")
+        })
+        .catch(err => {
+            res.status(400).send("Unable to save to database")
+        })
 })
 
-app.post("/games", (req, res) => {
-    console.log(req.body)
-    res.send("Games here!")
+app.listen(port, () => {
+    console.log("Server listening on port " + port)
 })
+
 
 app.listen(port, () => console.log(`Example app listening on port ${port}!`))
