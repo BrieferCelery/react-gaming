@@ -11,7 +11,6 @@ import Navbar from "./Navbar"
 import Auth from "./Auth"
 
 export default function App() {
-    
 
     return (
         <div className="App-header">
