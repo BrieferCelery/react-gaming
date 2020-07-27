@@ -22,6 +22,9 @@ useEffect(() => {
           console.error(e)
         }
       }
+      else{
+        setDropdownIsopened(false)
+    }
     }
     getRawgApi()
   }, [keyword])
