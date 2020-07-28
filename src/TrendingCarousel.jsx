@@ -25,6 +25,7 @@ export default function TrendingCarousel() {
       }, [getRawgApi])
 
     return (
+      <div>
         <Carousel showArrows={true}>
         {Object.values(games).map(game => (
             <div>
@@ -33,5 +34,7 @@ export default function TrendingCarousel() {
             </div>
                 ))}
         </Carousel>
+      </div>
+        
     )
 }
